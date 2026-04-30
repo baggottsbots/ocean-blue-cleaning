@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- BASE:START (managed by Coding Agent — do not edit) -->
+<base href="/ocean-blue-cleaning/">
+<!-- BASE:END -->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+
+<!-- SEO Meta Tags -->
+<title>Ocean Blue Cleaning Services | Bluffton &amp; Hilton Head Island, SC</title>
+<meta name="description" content="Top-rated residential and commercial cleaning services in Bluffton, SC and Hilton Head Island. Family-owned, 10+ years of experience. Get your free quote today!" />
+<meta property="og:title" content="Ocean Blue Cleaning Services | Bluffton &amp; Hilton Head Island, SC" />
+<meta property="og:description" content="Top-rated residential and commercial cleaning services in Bluffton, SC and Hilton Head Island. Family-owned, 10+ years of experience. Get your free quote today!" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Ocean Blue Cleaning Services | Bluffton &amp; Hilton Head Island, SC" />
+<meta name="twitter:description" content="Top-rated residential and commercial cleaning services in Bluffton, SC and Hilton Head Island. Family-owned, 10+ years of experience. Get your free quote today!" />
+<!-- End SEO Meta Tags -->
+
+<script data-field-replace>
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  var fields={};
+  var paramMap={
+    'first_name':'firstName','last_name':'lastName','full_name':'fullName',
+    'email':'email','phone':'phone','company':'company',
+    'city':'city','state':'state','country':'country'
+  };
+  var skipTags={'SCRIPT':1,'STYLE':1,'NOSCRIPT':1,'TEXTAREA':1,'CODE':1,'PRE':1};
+  var hasUrlFields=false;
+  for(var p in paramMap){
+    var v=params.get(p);
+    if(v){fields[paramMap[p]]=v;hasUrlFields=true;}
+  }
+  var contactId=params.get('contact_id');
+  function esc(s){
+    if(!s)return s;
+    var d=document.createElement('div');
+    d.appendChild(document.createTextNode(s));
+    return d.innerHTML;
+  }
+  function doReplace(data){
+    var r={};
+    r['{{full_name}}']=esc(((data.firstName||'')+' '+(data.lastName||'')).trim()||((data.fullName||data.name)||''));
+    r['{{first_name}}']=esc(data.firstName||(data.name?data.name.split(' ')[0]:'')||'');
+    r['{{last_name}}']=esc(data.lastName||(data.name&&data.name.indexOf(' ')>-1?data.name.substring(data.name.indexOf(' ')+1):'')||'');
+    r['{{email}}']=esc(data.email||'');
+    r['{{phone}}']=esc(data.phone||'');
+    r['{{company}}']=esc(data.company||'');
+    r['{{city}}']=esc(data.city||'');
+    r['{{state}}']=esc(data.state||'');
+    r['{{country}}']=esc(data.country||'');
+    r['{{date}}']=new Date().toLocaleDateString();
+    r['{{time}}']=new Date().toLocaleTimeString();
+    r['{{location}}']=[data.city,data.state,data.country].filter(Boolean).join(', ');
+    r['{{tracking_id}}']=esc(data.trackingId||'');
+    r['{{lastClickedProduct}}']=esc(data.lastClickedProduct||'');
+    r['{{lastProductClickDate}}']=esc(data.lastProductClickDate||'');
+    r['{{lastClickedProductPrice}}']=esc(data.lastClickedProductPrice||'');
+    r['{{lastClickedProductURL}}']=esc(data.lastClickedProductURL||'');
+    r['{{productsClickedCount}}']=esc(data.productsClickedCount||'0');
+    r['{{ip_address}}']=esc(data.ipAddress||'');
+    r['{{ip}}']=esc(data.ipAddress||'');
+    if(data.customFields){
+      for(var k in data.customFields){
+        r['{{'+k+'}}']=esc(String(data.customFields[k]||''));
+      }
+    }
+    params.forEach(function(v,k){
+      if(!paramMap[k]&&k!=='contact_id'&&k!=='page_id'&&k.indexOf('utm_')!==0){
+        r['{{'+k+'}}']=esc(v);
+      }
+    });
+    var hasValues=false;
+    for(var key in r){if(r[key]){hasValues=true;break;}}
+    if(!hasValues)return;
+    var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+      acceptNode:function(n){
+        var p=n.parentNode;
+        if(p&&skipTags[p.nodeName])return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var node;
+    while(node=walker.nextNode()){
+      var txt=node.nodeValue;
+      if(txt&&txt.indexOf('{{')>-1){
+        var changed=txt;
+        for(var ph in r){
+          if(r[ph]&&changed.indexOf(ph)>-1){
+            changed=changed.split(ph).join(r[ph]);
+          }
+        }
+        if(changed!==txt)node.nodeValue=changed;
+      }
+    }
+    var attrs=['value','placeholder','content','alt','title'];
+    attrs.forEach(function(attr){
+      var els=document.querySelectorAll('['+attr+'*="{{"]');
+      for(var i=0;i<els.length;i++){
+        var tag=els[i].tagName;
+        if(skipTags[tag])continue;
+        var val=els[i].getAttribute(attr);
+        if(val){
+          var nv=val;
+          for(var ph in r){
+            if(r[ph]&&nv.indexOf(ph)>-1){
+              nv=nv.split(ph).join(r[ph]);
+            }
+          }
+          if(nv!==val)els[i].setAttribute(attr,nv);
+        }
+      }
+    });
+  }
+  function run(){
+    if(contactId){
+      var xhr=new XMLHttpRequest();
+      xhr.open('GET','https://paymegpt.com/api/landing/context/'+encodeURIComponent(contactId)+'?page_id=3674');
+      xhr.onload=function(){
+        if(xhr.status===200){
+          try{
+            var resp=JSON.parse(xhr.responseText);
+            if(resp.success&&resp.contact){
+              var merged=resp.contact;
+              for(var k in fields){merged[k]=fields[k];}
+              doReplace(merged);
+              return;
+            }
+          }catch(e){}
+        }
+        if(hasUrlFields)doReplace(fields);
+      };
+      xhr.onerror=function(){if(hasUrlFields)doReplace(fields);};
+      xhr.send();
+    }else if(hasUrlFields){
+      doReplace(fields);
+    }
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}
+  else{run();}
+})();
+</script>
+<script data-payment>
+(function(){
+  var slug='tPvSn7';
+  var apiBase='https://paymegpt.com';
+  function findEmail(){
+    var ids=['email','emailAddress','buyer-email','buyerEmail','user-email','userEmail','checkout-email','customer-email','contact-email'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.includes('@'))return el.value.trim();}
+    var inputs=document.querySelectorAll('input[type="email"],input[name*="email"],input[placeholder*="email"],input[placeholder*="Email"]');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.includes('@'))return inputs[j].value.trim();}
+    return '';
+  }
+  function findName(){
+    var ids=['name','fullName','full-name','buyer-name','buyerName','customer-name','userName','user-name'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value)return el.value.trim();}
+    var inputs=document.querySelectorAll('input[name*="name"]:not([name*="email"]):not([type="email"]),input[placeholder*="name"]:not([placeholder*="email"]):not([type="email"]),input[placeholder*="Name"]:not([type="email"])');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value)return inputs[j].value.trim();}
+    return '';
+  }
+  var __realProcessPayment=function(a,b,c,d,e){
+    var amountCents,email,productName,productDescription,customerName,quantity;
+    if(a&&typeof a==='object'){
+      amountCents=a.amountCents;email=a.email;productName=a.productName;
+      productDescription=a.productDescription||'';customerName=a.name||'';quantity=a.quantity||1;
+    }else{
+      amountCents=typeof a==='number'?a:0;productName=typeof b==='string'?b:'';
+      productDescription=typeof c==='string'?c:'';email='';customerName='';quantity=1;
+    }
+    if(!email)email=findEmail();
+    if(!customerName)customerName=findName();
+    if(!productName){alert('Product name is required.');return Promise.reject('no_product_name');}
+    if(!amountCents||amountCents<100){alert('Amount must be at least $1.00');return Promise.reject('invalid_amount');}
+    if(!email){alert('Please enter your email address.');return Promise.reject('no_email');}
+    var successBase=window.location.href.split('?')[0];
+    return fetch(apiBase+'/api/landing-pages/public/'+slug+'/payment/checkout',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email,name:customerName,amountCents:amountCents,productName:productName,productDescription:productDescription,quantity:quantity,successUrl:successBase+'?payment=success&product='+encodeURIComponent(productName)+'&session_id={CHECKOUT_SESSION_ID}',cancelUrl:successBase+'?payment=cancelled'})
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.checkoutUrl){window.location.href=d.checkoutUrl;}
+      else{alert(d.error||'Failed to process payment');throw new Error(d.error);}
+    });
+  };
+  Object.defineProperty(window,'__processPayment',{value:__realProcessPayment,writable:false,configurable:false});
+  document.addEventListener('DOMContentLoaded',function(){
+    var urlParams=new URLSearchParams(window.location.search);
+    if(urlParams.get('payment')==='success'){
+      var pName=urlParams.get('product')||'your item';
+      var overlay=document.createElement('div');overlay.id='payment-success-overlay';
+      overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999999;font-family:system-ui,-apple-system,sans-serif;';
+      overlay.innerHTML='<div style="background:white;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);"><div style="width:64px;height:64px;border-radius:50%;background:#dcfce7;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><h2 style="margin:0 0 12px;font-size:24px;font-weight:700;color:#111827;">Payment Successful!</h2><p style="margin:0 0 24px;color:#6b7280;font-size:16px;">Thank you for purchasing '+pName.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'.</p><button onclick="document.getElementById(\'payment-success-overlay\').remove();window.history.replaceState({},\'\',window.location.pathname);" style="padding:12px 32px;font-size:16px;font-weight:600;background:#16a34a;color:white;border:none;border-radius:8px;cursor:pointer;">Continue</button></div>';
+      document.body.appendChild(overlay);
+    }
+  });
+})();
+</script>  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+    <symbol id="i-wave" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2"/><path d="M2 12c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2"/><path d="M2 18c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></symbol>
+    <symbol id="i-shop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 7 2-4h16l2 4"/><path d="M4 7v13a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V7"/><path d="M2 7h20"/><path d="M9 11v4"/><path d="M15 11v4"/></symbol>
+    <symbol id="i-umbrella" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12a10.06 10.06 0 0 0-20 0Z"/><path d="M12 12v8a2 2 0 0 0 4 0"/><path d="M12 2v1"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+  </defs>
+</svg>
+<nav class="nav">
+  <div class="logo">Ocean Blue<span> · Cleaning</span></div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#areas">Service Areas</a>
+    <a href="#quote">Contact</a>
+    <a href="tel:8437072268" class="nav-cta"><svg class="icon"><use href="#i-phone"/></svg>(843) 707-2268</a>
+  </div>
+</nav>
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge"><span class="pulse-dot"></span>Family-Owned · Fully Insured · Lowcountry Locals</div>
+    <h1>Spotless homes, <em>peaceful</em> minds — across the Lowcountry.</h1>
+    <p>Trusted residential and commercial cleaning services for Bluffton, Hilton Head Island, and the surrounding Beaufort County coast. Over a decade of detail, done right.</p>
+    <div class="hero-cta-row">
+      <a href="#quote" class="btn-primary">Get a Free Quote <svg class="icon"><use href="#i-arrow-right"/></svg></a>
+      <a href="tel:8437072268" class="btn-secondary"><svg class="icon"><use href="#i-phone"/></svg> (843) 707-2268</a>
+    </div>
+    <div class="hero-stats">
+      <div><span class="stat-num">3,480+</span><span class="stat-label">Happy Clients</span></div>
+      <div><span class="stat-num">5,000+</span><span class="stat-label">Jobs Done</span></div>
+      <div><span class="stat-num">10+</span><span class="stat-label">Years Local</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-image">
+      <div class="hero-image-emblem">
+        <div class="crest"><svg><use href="#i-wave"/></svg></div>
+        <h3>Ocean Blue</h3>
+        <p>Cleaning Services</p>
+      </div>
+    </div>
+    <div class="hero-card hero-card-1">
+      <div class="card-icon"><svg><use href="#i-star"/></svg></div>
+      <div class="card-text"><strong>5-Star Rated</strong><span>500+ verified reviews</span></div>
+    </div>
+    <div class="hero-card hero-card-2">
+      <div class="card-icon"><svg><use href="#i-wave"/></svg></div>
+      <div class="card-text"><strong>Lowcountry Locals</strong><span>Bluffton & HHI since 2014</span></div>
+    </div>
+  </div>
+</section>
+<section id="services">
+  <div class="section-header reveal">
+    <div class="eyebrow">What We Do</div>
+    <h2>Cleaning services <em>tailored</em> to your space.</h2>
+    <p>From oceanfront vacation rentals to family homes in Old Town Bluffton, we tailor every clean to your needs.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal"><div class="service-icon"><svg><use href="#i-home"/></svg></div><h3>House Cleaning</h3><p>Recurring or one-time house cleaning for full-time residents, second homes, and snowbirds across the Lowcountry.</p></div>
+    <div class="service-card reveal"><div class="service-icon"><svg><use href="#i-building"/></svg></div><h3>Office Cleaning</h3><p>Reliable, scheduled office cleaning so your team walks into a fresh, productive space every morning.</p></div>
+    <div class="service-card reveal"><div class="service-icon"><svg><use href="#i-shop"/></svg></div><h3>Commercial Cleaning</h3><p>Retail, medical, restaurant, and hospitality cleaning with the consistency your business reputation deserves.</p></div>
+    <div class="service-card reveal"><div class="service-icon"><svg><use href="#i-umbrella"/></svg></div><h3>Vacation Rental Turnover</h3><p>Fast, detail-oriented turnover cleans for Airbnb and VRBO hosts on Hilton Head and beyond. 5-star ready every time.</p></div>
+    <div class="service-card reveal"><div class="service-icon"><svg><use href="#i-sparkles"/></svg></div><h3>Deep Cleaning</h3><p>Top-to-bottom refresh for move-ins, move-outs, post-construction, and seasonal resets.</p></div>
+    <div class="service-card reveal"><div class="service-icon"><svg><use href="#i-shield"/></svg></div><h3>Sanitization Services</h3><p>Thorough disinfection following CDC guidelines to keep your family, employees, and guests protected.</p></div>
+  </div>
+</section>
+<section id="areas" class="areas">
+  <div class="areas-content">
+    <div class="reveal">
+      <div class="eyebrow">Where We Clean</div>
+      <h2>Proudly serving the <em>Lowcountry</em> coast.</h2>
+      <p>From the marshes of Bluffton to the beaches of Hilton Head, we're your neighbors — born, raised, and rooted in South Carolina.</p>
+      <ul class="areas-list">
+        <li><svg><use href="#i-check"/></svg>Bluffton</li>
+        <li><svg><use href="#i-check"/></svg>Hilton Head Island</li>
+        <li><svg><use href="#i-check"/></svg>Sun City</li>
+        <li><svg><use href="#i-check"/></svg>Okatie</li>
+        <li><svg><use href="#i-check"/></svg>Palmetto Bluff</li>
+        <li><svg><use href="#i-check"/></svg>Sea Pines</li>
+        <li><svg><use href="#i-check"/></svg>Palmetto Dunes</li>
+        <li><svg><use href="#i-check"/></svg>Daufuskie Island</li>
+      </ul>
+    </div>
+    <div class="areas-map reveal"></div>
+  </div>
+</section>
+<section id="quote" class="quote-section">
+  <div class="quote-wrapper reveal">
+    <div class="quote-info">
+      <h2>Request your <em>free</em> quote.</h2>
+      <p>Tell us a bit about your space. We'll respond within 24 hours with a custom quote.</p>
+      <div class="info-item"><div class="info-item-icon"><svg><use href="#i-phone"/></svg></div><div class="info-item-text"><strong><a href="tel:8437072268">(843) 707-2268</a></strong><span>Call or text anytime</span></div></div>
+      <div class="info-item"><div class="info-item-icon"><svg><use href="#i-mail"/></svg></div><div class="info-item-text"><strong><a href="mailto:oceanblueservices@gmail.com">oceanblueservices@gmail.com</a></strong><span>We reply within a few hours</span></div></div>
+      <div class="info-item"><div class="info-item-icon"><svg><use href="#i-clock"/></svg></div><div class="info-item-text"><strong>Mon–Fri: 6 AM – 9 PM</strong><span>Sat–Sun: 8 AM – 8 PM</span></div></div>
+      <div class="info-item"><div class="info-item-icon"><svg><use href="#i-pin"/></svg></div><div class="info-item-text"><strong>Bluffton, SC</strong><span>Serving Hilton Head Island & Beaufort County</span></div></div>
+    </div>
+    <div class="quote-form-container">
+      <iframe src="https://paymegpt.com/forms/xz1t4337" title="Ocean Blue Cleaning Free Quote Form"></iframe>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">Ocean Blue<span> · Cleaning</span></div>
+      <p>Family-owned residential and commercial cleaning, proudly serving Bluffton, Hilton Head Island, and the Lowcountry since 2014.</p>
+    </div>
+    <div><h4>Services</h4><ul><li><a href="#services">House Cleaning</a></li><li><a href="#services">Office Cleaning</a></li><li><a href="#services">Commercial</a></li><li><a href="#services">Vacation Rentals</a></li><li><a href="#services">Deep Cleaning</a></li></ul></div>
+    <div><h4>Areas</h4><ul><li><a href="#areas">Bluffton</a></li><li><a href="#areas">Hilton Head Island</a></li><li><a href="#areas">Sun City</a></li><li><a href="#areas">Palmetto Bluff</a></li><li><a href="#areas">Beaufort County</a></li></ul></div>
+    <div><h4>Contact</h4><ul><li><a href="tel:8437072268">(843) 707-2268</a></li><li><a href="mailto:oceanblueservices@gmail.com">oceanblueservices@gmail.com</a></li><li><a href="#quote">Free Quote</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">© 2026 Ocean Blue Cleaning Services · Built by BaggottsBots</div>
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
