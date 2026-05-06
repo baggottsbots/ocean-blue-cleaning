@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -339,77 +338,76 @@ const io=new IntersectionObserver((e)=>{e.forEach(e=>{if(e.isIntersecting){e.tar
 document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
 
 // Quote form -> PayMeGPT flow webhook
-const QUOTE_WEBHOOK_URL = ‘https://paymegpt.com/api/webhooks/flow/2891/e7004ab00a164d57eae3fa9abd0746790d93b60b4a633578511f30755a9f95bd’;
-const submitBtn = document.getElementById(‘qf-submit’);
-const errorBox = document.getElementById(‘qf-error’);
-const formGrid = document.getElementById(‘quoteForm’);
-const successBox = document.getElementById(‘formSuccess’);
+const QUOTE_WEBHOOK_URL = 'https://paymegpt.com/api/webhooks/flow/2891/e7004ab00a164d57eae3fa9abd0746790d93b60b4a633578511f30755a9f95bd';
+const submitBtn = document.getElementById('qf-submit');
+const errorBox = document.getElementById('qf-error');
+const formGrid = document.getElementById('quoteForm');
+const successBox = document.getElementById('formSuccess');
 
 function getField(id){return document.getElementById(id)}
-function showError(msg){errorBox.textContent=msg;errorBox.className=‘form-status error’}
-function clearError(){errorBox.textContent=’’;errorBox.className=‘form-status’}
+function showError(msg){errorBox.textContent=msg;errorBox.className='form-status error'}
+function clearError(){errorBox.textContent='';errorBox.className='form-status'}
 
-submitBtn.addEventListener(‘click’, async () => {
-clearError();
-const name = getField(‘qf-name’).value.trim();
-const email = getField(‘qf-email’).value.trim();
-const phone = getField(‘qf-phone’).value.trim();
-const serviceType = getField(‘qf-serviceType’).value;
+submitBtn.addEventListener('click', async () => {
+  clearError();
+  const name = getField('qf-name').value.trim();
+  const email = getField('qf-email').value.trim();
+  const phone = getField('qf-phone').value.trim();
+  const serviceType = getField('qf-serviceType').value;
 
-if(!name || !email || !phone || !serviceType){
-showError(‘Please fill in your name, email, phone, and service type.’);
-return;
-}
-if(!/^[^\s@]+@[^\s@]+.[^\s@]+$/.test(email)){
-showError(‘Please enter a valid email address.’);
-return;
-}
+  if(!name || !email || !phone || !serviceType){
+    showError('Please fill in your name, email, phone, and service type.');
+    return;
+  }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    showError('Please enter a valid email address.');
+    return;
+  }
 
-const fields = {
-name, email, phone, serviceType,
-propertyType: getField(‘qf-propertyType’).value,
-bedrooms: getField(‘qf-bedrooms’).value,
-bathrooms: getField(‘qf-bathrooms’).value,
-squareFootage: getField(‘qf-squareFootage’).value,
-frequency: getField(‘qf-frequency’).value,
-city: getField(‘qf-city’).value,
-preferredDate: getField(‘qf-preferredDate’).value,
-notes: getField(‘qf-notes’).value
-};
+  const fields = {
+    name, email, phone, serviceType,
+    propertyType: getField('qf-propertyType').value,
+    bedrooms: getField('qf-bedrooms').value,
+    bathrooms: getField('qf-bathrooms').value,
+    squareFootage: getField('qf-squareFootage').value,
+    frequency: getField('qf-frequency').value,
+    city: getField('qf-city').value,
+    preferredDate: getField('qf-preferredDate').value,
+    notes: getField('qf-notes').value
+  };
 
-// PayMeGPT webhook expects contactEmail/contactName/contactPhone + data.
-// We also send fields at the top level so {{name}}, {{email}}, etc. resolve as flat variables.
-const payload = {
-contactName: name,
-contactEmail: email,
-contactPhone: phone,
-…fields,
-data: fields
-};
+  // PayMeGPT webhook expects contactEmail/contactName/contactPhone + data.
+  // We also send fields at the top level so {{name}}, {{email}}, etc. resolve as flat variables.
+  const payload = {
+    contactName: name,
+    contactEmail: email,
+    contactPhone: phone,
+    ...fields,
+    data: fields
+  };
 
-submitBtn.disabled = true;
-const origText = submitBtn.innerHTML;
-submitBtn.innerHTML = ‘Sending…’;
+  submitBtn.disabled = true;
+  const origText = submitBtn.innerHTML;
+  submitBtn.innerHTML = 'Sending…';
 
-try {
-const res = await fetch(QUOTE_WEBHOOK_URL, {
-method: ‘POST’,
-headers: {‘Content-Type’: ‘application/json’},
-body: JSON.stringify(payload)
-});
-if(!res.ok){
-throw new Error(’Server returned ’ + res.status);
-}
-formGrid.style.display = ‘none’;
-successBox.classList.add(‘visible’);
-successBox.scrollIntoView({behavior:‘smooth’, block:‘center’});
-} catch (err) {
-submitBtn.disabled = false;
-submitBtn.innerHTML = origText;
-showError(“Something went wrong sending your request. Please try again or call (843) 707-2268.”);
-console.error(err);
-}
+  try {
+    const res = await fetch(QUOTE_WEBHOOK_URL, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload)
+    });
+    if(!res.ok){
+      throw new Error('Server returned ' + res.status);
+    }
+    formGrid.style.display = 'none';
+    successBox.classList.add('visible');
+    successBox.scrollIntoView({behavior:'smooth', block:'center'});
+  } catch (err) {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = origText;
+    showError("Something went wrong sending your request. Please try again or call (843) 707-2268.");
+    console.error(err);
+  }
 });
 </script>
-
 </body></html>
