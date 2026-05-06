@@ -20,6 +20,7 @@
 .hero-cta-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px}
 .btn-primary{background:var(--ocean-deep);color:white;padding:16px 32px;border-radius:100px;text-decoration:none;font-weight:600;font-size:1rem;display:inline-flex;align-items:center;gap:10px;transition:all .3s;border:none;cursor:pointer;box-shadow:var(--shadow-med)}
 .btn-primary:hover{background:var(--ocean-mid);transform:translateY(-2px);box-shadow:var(--shadow-deep)}
+.btn-primary:disabled{opacity:.7;cursor:not-allowed;transform:none}
 .btn-secondary{background:transparent;color:var(--ocean-deep);padding:16px 32px;border-radius:100px;text-decoration:none;font-weight:600;border:2px solid var(--ocean-deep);transition:all .3s;display:inline-flex;align-items:center;gap:10px}
 .btn-secondary:hover{background:var(--ocean-deep);color:white}
 .trust-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;padding-top:32px;border-top:1px solid rgba(10,77,110,.1)}
@@ -84,8 +85,28 @@ section{padding:100px 5%}
 .info-item-text strong{display:block;font-size:.95rem}
 .info-item-text span{font-size:.85rem;opacity:.8}
 .info-item-text a{color:white;text-decoration:none}
-.quote-form-container{background:white;min-height:700px;display:flex;flex-direction:column}
-.quote-form-container iframe{width:100%;flex:1;border:none;min-height:700px}
+.quote-form-container{background:white;padding:48px 44px;display:flex;flex-direction:column}
+.quote-form-container h3{font-size:1.5rem;margin-bottom:8px}
+.quote-form-container > p.form-intro{color:var(--ink-soft);font-size:.95rem;margin-bottom:28px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-field{display:flex;flex-direction:column;gap:6px}
+.form-field.full{grid-column:1 / -1}
+.form-field label{font-size:.82rem;font-weight:600;color:var(--ocean-deep);letter-spacing:.01em}
+.form-field label .req{color:#d44;margin-left:2px}
+.form-field input,.form-field select,.form-field textarea{padding:12px 14px;border:1.5px solid rgba(10,77,110,.15);border-radius:10px;font-family:inherit;font-size:.95rem;color:var(--ink);background:white;transition:all .2s;width:100%}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{outline:none;border-color:var(--ocean-mid);box-shadow:0 0 0 3px rgba(26,124,168,.12)}
+.form-field textarea{resize:vertical;min-height:90px;font-family:inherit}
+.form-field select{cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%230A4D6E' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.form-submit{margin-top:20px;width:100%;justify-content:center}
+.form-footnote{font-size:.78rem;color:var(--ink-soft);margin-top:14px;text-align:center}
+.form-status{margin-top:16px;padding:14px 16px;border-radius:10px;font-size:.9rem;display:none}
+.form-status.error{display:block;background:rgba(220,53,69,.08);color:#a02030;border:1px solid rgba(220,53,69,.2)}
+.form-success{display:none;text-align:center;padding:40px 20px}
+.form-success.visible{display:block}
+.form-success-icon{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--ocean-light));display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:white}
+.form-success-icon svg{width:36px;height:36px}
+.form-success h3{margin-bottom:12px}
+.form-success p{color:var(--ink-soft)}
 footer{background:var(--ocean-deep);color:rgba(255,255,255,.85);padding:60px 5% 30px}
 .footer-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
 .footer-brand .logo{color:white;margin-bottom:16px;display:block}
@@ -104,6 +125,7 @@ footer a:hover{color:var(--accent-glow)}
 .areas-content{grid-template-columns:1fr}.quote-wrapper{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}
 .showcase-inner{grid-template-columns:1fr}.showcase-image{min-height:320px}.showcase-text{padding:60px 32px}
 .trust-strip{grid-template-columns:1fr;gap:20px}.trust-item{flex-direction:row;align-items:flex-start;gap:14px}.trust-item-icon{margin-bottom:0}
+.quote-form-container{padding:36px 28px}.form-grid{grid-template-columns:1fr}
 }
 @media (max-width:500px){
 .nav{padding:10px 4%;gap:10px}.logo{font-size:1rem}.nav-cta{padding:8px 12px;font-size:.78rem;gap:5px}.nav-cta .icon{width:14px;height:14px}
