@@ -481,7 +481,7 @@
     <div class="showcase-text">
       <div class="eyebrow">Why Ocean Blue</div>
       <h2 id="showcase-heading">Detail-driven cleans, every <em>single</em> visit.</h2>
-      <p>We don't cut corners — we clean them. From kitchen baseboards to windowsills, every Ocean Blue clean follows a consistent checklist tuned for Lowcountry homes. Whether you're a full-time resident, a snowbird, or a vacation rental host, you'll notice the difference.</p>
+      <p>We don't cut corners. We clean them. From kitchen baseboards to windowsills, every Ocean Blue clean follows a consistent checklist tuned for Lowcountry homes. Whether you're a full-time resident, a snowbird, or a vacation rental host, you'll notice the difference.</p>
       <ul class="showcase-checks">
         <li><svg aria-hidden="true"><use href="#i-check"></use></svg>Same dedicated team every visit, when possible</li>
         <li><svg aria-hidden="true"><use href="#i-check"></use></svg>Flexible scheduling for snowbirds &amp; vacation rentals</li>
@@ -500,18 +500,18 @@
     <article class="service-card reveal">
       <div class="service-icon" aria-hidden="true"><svg><use href="#i-home"></use></svg></div>
       <h3>House Cleaning</h3>
-      <p>Recurring or one-time house cleaning for full-time residents, second homes, and snowbirds across the Lowcountry. We follow a detailed checklist every visit so nothing is ever overlooked — from ceiling fans to baseboards. Choose weekly, bi-weekly, or monthly scheduling that works around your life.</p>
+      <p>Recurring or one-time house cleaning for full-time residents, second homes, and snowbirds across the Lowcountry. We follow a detailed checklist every visit so nothing is ever overlooked, from ceiling fans to baseboards. Choose weekly, bi-weekly, or monthly scheduling that works around your life.</p>
     </article>
     <article class="service-card reveal">
       <div class="service-icon" aria-hidden="true"><svg><use href="#i-building"></use></svg></div>
       <h3>Office Cleaning</h3>
-      <p>Reliable, scheduled office cleaning so your team walks into a fresh, productive space every morning. We work around your business hours and tailor each visit to your layout — from open-plan workspaces to private offices, conference rooms, and shared kitchens. Consistent service you can count on.</p>
+      <p>Reliable, scheduled office cleaning so your team walks into a fresh, productive space every morning. We work around your business hours and tailor each visit to your layout, from open-plan workspaces to private offices, conference rooms, and shared kitchens. Consistent service you can count on.</p>
     </article>
 
     <article class="service-card reveal">
       <div class="service-icon" aria-hidden="true"><svg><use href="#i-sparkles"></use></svg></div>
       <h3>Deep Cleaning</h3>
-      <p>A top-to-bottom refresh for move-ins, move-outs, post-construction, and seasonal resets. We go beyond the surface — inside appliances, behind furniture, grout lines, and every corner that routine cleaning doesn't reach. The perfect starting point before beginning a regular cleaning plan.</p>
+      <p>A top-to-bottom refresh for move-ins, move-outs, post-construction, and seasonal resets. We go beyond the surface: inside appliances, behind furniture, grout lines, and every corner that routine cleaning doesn't reach. The perfect starting point before beginning a regular cleaning plan.</p>
     </article>
   </div>
 </section>
@@ -521,7 +521,7 @@
     <div class="reveal">
       <div class="eyebrow">Where We Clean</div>
       <h2 id="areas-heading">Proudly serving the <em>Lowcountry</em> coast.</h2>
-      <p>From the marshes of Bluffton to the beaches of Hilton Head, we're your neighbors — born, raised, and rooted in South Carolina.</p>
+      <p>From the marshes of Bluffton to the beaches of Hilton Head, we're your neighbors: born, raised, and rooted in South Carolina.</p>
       <ul class="areas-list">
         <li><svg aria-hidden="true"><use href="#i-check"></use></svg>Bluffton</li>
         <li><svg aria-hidden="true"><use href="#i-check"></use></svg>Hilton Head Island</li>
@@ -549,7 +549,7 @@
     <div class="quote-form-container">
       <div id="formWrapper">
         <h3>Get your free quote</h3>
-        <p class="form-intro">Fill in a few details — we'll text or email you back within 24 hours.</p>
+        <p class="form-intro">Fill in a few details and we'll text or email you back within 24 hours.</p>
         <form id="quoteForm" class="form-grid" novalidate>
           <div class="form-field">
             <label for="qf-name">Full Name<span class="req" aria-hidden="true">*</span></label>
@@ -569,7 +569,6 @@
               <option value="">Choose…</option>
               <option>House Cleaning</option>
               <option>Office Cleaning</option>
-
               <option>Deep Cleaning</option>
               <option>Move-In / Move-Out</option>
             </select>
@@ -641,7 +640,7 @@
         </form>
         <div id="formSuccess" class="form-success" role="status">
           <div class="form-success-icon"><svg aria-hidden="true"><use href="#i-check"></use></svg></div>
-          <h3>Thanks — we got it!</h3>
+          <h3>Thanks, we got it!</h3>
           <p>Your quote request just landed in our inbox. A member of the Ocean Blue team will reach out within 24 hours. If you need us sooner, call <a href="tel:8437072268" style="color:var(--ocean-mid);font-weight:600">(843) 707-2268</a>.</p>
         </div>
       </div>
@@ -699,19 +698,24 @@ const io = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach(e => io.observe(e));
 
 const QUOTE_WEBHOOK_URL = 'https://paymegpt.com/api/webhooks/flow/2891/e7004ab00a164d57eae3fa9abd0746790d93b60b4a633578511f30755a9f95bd';
+const REQUEST_TIMEOUT_MS = 15000;
+
+const formEl = document.getElementById('quoteForm');
 const submitBtn = document.getElementById('qf-submit');
 const errorBox = document.getElementById('qf-error');
-const formGrid = document.getElementById('quoteForm');
 const successBox = document.getElementById('formSuccess');
+const origBtnHTML = submitBtn.innerHTML;
 
 function getField(id) { return document.getElementById(id); }
 function showError(msg) { errorBox.textContent = msg; errorBox.className = 'form-status error'; }
 function clearError() { errorBox.textContent = ''; errorBox.className = 'form-status'; }
+function resetSubmit() { submitBtn.disabled = false; submitBtn.innerHTML = origBtnHTML; }
 
-formGrid.addEventListener('submit', async (e) => {
+formEl.addEventListener('submit', async (e) => {
   e.preventDefault();
   if (submitBtn.disabled) return;
   clearError();
+
   const name = getField('qf-name').value.trim();
   const email = getField('qf-email').value.trim();
   const phone = getField('qf-phone').value.trim();
@@ -726,53 +730,56 @@ formGrid.addEventListener('submit', async (e) => {
     return;
   }
 
-  const fields = {
-    name, email, phone, serviceType,
-    propertyType: getField('qf-propertyType').value,
-    bedrooms: getField('qf-bedrooms').value,
-    bathrooms: getField('qf-bathrooms').value,
-    squareFootage: getField('qf-squareFootage').value,
-    frequency: getField('qf-frequency').value,
-    city: getField('qf-city').value,
-    preferredDate: getField('qf-preferredDate').value,
-    notes: getField('qf-notes').value
-  };
-
+  // Flat payload: one key per field, no nested or duplicated data.
   const payload = {
     contactName: name,
     contactEmail: email,
     contactPhone: phone,
-    ...fields,
-    data: fields
+    serviceType: serviceType,
+    propertyType: getField('qf-propertyType').value,
+    bedrooms: getField('qf-bedrooms').value,
+    bathrooms: getField('qf-bathrooms').value,
+    squareFootage: getField('qf-squareFootage').value.trim(),
+    frequency: getField('qf-frequency').value,
+    city: getField('qf-city').value,
+    preferredDate: getField('qf-preferredDate').value,
+    notes: getField('qf-notes').value.trim(),
+    source: 'Ocean Blue quote form',
+    submittedAt: new Date().toISOString()
   };
 
   submitBtn.disabled = true;
-  const origHTML = submitBtn.innerHTML;
   submitBtn.innerHTML = 'Sending&hellip;';
 
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
   try {
-    // Use a standard form submission encoding to avoid a cross-origin
-    // JSON preflight, while keeping the same webhook and quote fields.
-    const formBody = new URLSearchParams();
+    const body = new URLSearchParams();
     Object.entries(payload).forEach(([key, value]) => {
-      formBody.append(key, typeof value === 'object' ? JSON.stringify(value) : value);
+      body.append(key, value == null ? '' : String(value));
     });
-    const res = await fetch(QUOTE_WEBHOOK_URL, {
+
+    // no-cors: the webhook's response is opaque to the browser, so a
+    // resolved request means it was sent. Network failures and timeouts reject.
+    await fetch(QUOTE_WEBHOOK_URL, {
       method: 'POST',
-      body: formBody
+      mode: 'no-cors',
+      body: body,
+      signal: controller.signal
     });
-    if (!res.ok) throw new Error('Server returned ' + res.status);
-    formGrid.style.display = 'none';
+
+    clearTimeout(timer);
+    formEl.style.display = 'none';
     successBox.classList.add('visible');
     successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
   } catch (err) {
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = origHTML;
+    clearTimeout(timer);
+    resetSubmit();
     showError('Something went wrong sending your request. Please try again or call (843) 707-2268.');
-    console.error(err);
+    console.error('Quote submission failed:', err);
   }
 });
 </script>
-
 
 </body></html>
