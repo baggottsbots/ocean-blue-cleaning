@@ -550,7 +550,7 @@
       <div id="formWrapper">
         <h3>Get your free quote</h3>
         <p class="form-intro">Fill in a few details — we'll text or email you back within 24 hours.</p>
-        <div id="quoteForm" class="form-grid">
+        <form id="quoteForm" class="form-grid" novalidate>
           <div class="form-field">
             <label for="qf-name">Full Name<span class="req" aria-hidden="true">*</span></label>
             <input type="text" id="qf-name" name="name" required="" autocomplete="name" aria-required="true">
@@ -569,7 +569,7 @@
               <option value="">Choose…</option>
               <option>House Cleaning</option>
               <option>Office Cleaning</option>
-              <option>Commercial Cleaning</option>
+
               <option>Deep Cleaning</option>
               <option>Move-In / Move-Out</option>
             </select>
@@ -632,13 +632,13 @@
             <textarea id="qf-notes" name="notes" placeholder="Pets, special access instructions, problem areas, etc."></textarea>
           </div>
           <div class="form-field full">
-            <button type="button" id="qf-submit" class="btn-primary form-submit">
+            <button type="submit" id="qf-submit" class="btn-primary form-submit">
               Send My Free Quote Request <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
             </button>
             <div class="form-footnote">By submitting, you agree we may contact you about your quote. No spam ever.</div>
             <div id="qf-error" class="form-status" role="alert" aria-live="polite"></div>
           </div>
-        </div>
+        </form>
         <div id="formSuccess" class="form-success" role="status">
           <div class="form-success-icon"><svg aria-hidden="true"><use href="#i-check"></use></svg></div>
           <h3>Thanks — we got it!</h3>
@@ -708,7 +708,9 @@ function getField(id) { return document.getElementById(id); }
 function showError(msg) { errorBox.textContent = msg; errorBox.className = 'form-status error'; }
 function clearError() { errorBox.textContent = ''; errorBox.className = 'form-status'; }
 
-submitBtn.addEventListener('click', async () => {
+formGrid.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (submitBtn.disabled) return;
   clearError();
   const name = getField('qf-name').value.trim();
   const email = getField('qf-email').value.trim();
@@ -749,10 +751,15 @@ submitBtn.addEventListener('click', async () => {
   submitBtn.innerHTML = 'Sending&hellip;';
 
   try {
+    // Use a standard form submission encoding to avoid a cross-origin
+    // JSON preflight, while keeping the same webhook and quote fields.
+    const formBody = new URLSearchParams();
+    Object.entries(payload).forEach(([key, value]) => {
+      formBody.append(key, typeof value === 'object' ? JSON.stringify(value) : value);
+    });
     const res = await fetch(QUOTE_WEBHOOK_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: formBody
     });
     if (!res.ok) throw new Error('Server returned ' + res.status);
     formGrid.style.display = 'none';
