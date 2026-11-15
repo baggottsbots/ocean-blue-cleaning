@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.oceanbluecleaning.com/services/deep-cleaning/</loc>
+    <lastmod>2026-11-15T20:25:52.045Z</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://www.oceanbluecleaning.com/services/residential-cleaning/</loc>
     <lastmod>2026-11-15T20:25:42.034Z</lastmod>
     <changefreq>weekly</changefreq>
@@ -43,11 +48,6 @@
   <url>
     <loc>https://www.oceanbluecleaning.com/services/move-in-move-out-cleaning/</loc>
     <lastmod>2026-11-15T20:25:12.303Z</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.oceanbluecleaning.com/services/deep-cleaning/</loc>
-    <lastmod>2026-11-15T20:25:11.791Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
