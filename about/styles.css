@@ -44,3 +44,4 @@ footer .links{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin
 footer a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.92rem}footer a:hover{color:#7FE5D0}
 footer .small{font-size:.85rem;opacity:.6}
 @media(max-width:800px){.split{grid-template-columns:1fr;gap:26px}.photo{max-width:380px;margin:0 auto}.sec h2,.intro h2{font-size:2rem}}
+.ctab{width:calc(100% - 40px);margin:56px auto 64px;padding:44px 26px}@media(max-width:600px){.ctab{width:calc(100% - 32px);margin:48px auto 56px;padding:40px 22px}.ctab h2{font-size:2rem;margin-bottom:12px}.ctab p{margin-bottom:26px}.ctab .btn{display:block;max-width:320px;margin:0 auto}.ctab .btn+.btn{margin-top:16px}}
