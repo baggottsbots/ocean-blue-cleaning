@@ -26,6 +26,7 @@ a{color:var(--m)}
 .card:hover{transform:translateY(-4px);box-shadow:var(--sh)}
 .band{height:90px;background:linear-gradient(135deg,var(--d),var(--m) 60%,var(--l))}
 .card .b{padding:22px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
+.band{position:relative;height:200px;overflow:hidden;background:linear-gradient(135deg,#0A4D6E,#1A7CA8 60%,#5BB5D9)}.band img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}.card:hover .band img{transform:scale(1.04)}
 .card h3{font-size:1.65rem;line-height:1.15}
 .card p{color:var(--soft);font-size:.96rem}
 .card .more{margin-top:auto;color:var(--m);font-weight:600;font-size:.92rem}
